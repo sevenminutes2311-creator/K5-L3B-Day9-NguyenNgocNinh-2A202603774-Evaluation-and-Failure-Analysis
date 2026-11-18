@@ -3,14 +3,14 @@
 Card này đi kèm mỗi báo cáo và được dùng lại ở Day 10.
 
 - **Run ID / eval set SHA:**
-  - **v1 (`metric_spec.yaml` v1.0, `eval_set_v1.jsonl` sha `0da1b1f864c1`):**
-    - Baseline (`swarm`): `E-swarm-20261118-0da1`
-    - PR `fixed`: `E-fixed-20261118-0da1`
-    - PR `seeded_regression`: `E-seeded_regression-20261118-0da1`
-  - **v2 (`metric_spec_v2.yaml` v2.0, `eval_set_v2.jsonl` sha `aff448c95363`):**
-    - Baseline (`swarm`): `E-swarm-20261118-aff4`
-    - PR `slice_regression`: `E-slice_regression-20261118-aff4`
-- **Phiên bản:** eval set v1 (`0da1b1f864c1`) & v2 (`aff448c95363`) · `metric_spec` v1.0 & v2.0 · branch `starter/d09` · seeds `11, 22, 33, 44, 55` (A/A check: `66, 77, 88, 99, 110`).
+  - **v1 (`metric_spec.yaml` v1.0, `eval_set_v1.jsonl` sha `1f085cc9b6f6`):**
+    - Baseline (`swarm`): `E-swarm-20261118-1f08`
+    - PR `fixed`: `E-fixed-20261118-1f08`
+    - PR `seeded_regression`: `E-seeded_regression-20261118-1f08`
+  - **v2 (`metric_spec_v2.yaml` v2.0, `eval_set_v2.jsonl` sha `569b11628a9e`):**
+    - Baseline (`swarm`): `E-swarm-20261118-569b`
+    - PR `slice_regression`: `E-slice_regression-20261118-569b`
+- **Phiên bản:** eval set v1 (`1f085cc9b6f6`) & v2 (`569b11628a9e`) · `metric_spec` v1.0 & v2.0 · branch `starter/d09` · seeds `11, 22, 33, 44, 55` (A/A check: `66, 77, 88, 99, 110`).
 - **Eval set:**
   - v1: 14 item × 5 seed (`70` trials), nguồn `lab8_public`; nhãn tách riêng tại [src/data/eval/labels_v1.json](../src/data/eval/labels_v1.json).
   - v2: 28 item × 5 seed (`140` trials = 14 v1 + 14 adversarial pack `adversarial_v2.json`); nhãn tách riêng tại [src/data/eval/labels_v2.json](../src/data/eval/labels_v2.json).
@@ -41,7 +41,7 @@ Card này đi kèm mỗi báo cáo và được dùng lại ở Day 10.
 
 ## Phần v2 (M5–M7: Slices, Nhiễu A/A & Chống gian lận eval)
 
-- **Baseline v2 (`E-swarm-20261118-aff4`):** `pass_rate = 0.9786`, `refund_amount_correct = 0.9786`, `reply_matches_ledger = 1.0`, `pass_at_1 = 0.9786`, `pass_hat_1 = 0.9786`, `pass_at_3 = 1.0`, `pass_hat_3 = 0.9357`, `pass_at_5 = 1.0`, `pass_hat_5 = 0.8929`, `cost_per_success = 50.8077`.
+- **Baseline v2 (`E-swarm-20261118-569b`):** `pass_rate = 0.9786`, `refund_amount_correct = 0.9786`, `reply_matches_ledger = 1.0`, `pass_at_1 = 0.9786`, `pass_hat_1 = 0.9786`, `pass_at_3 = 1.0`, `pass_hat_3 = 0.9357`, `pass_at_5 = 1.0`, `pass_hat_5 = 0.8929`, `cost_per_success = 50.8077`.
 - **Ngưỡng chọn từ kiểm tra nhiễu A/A (`--aa 66,77,88,99,110`):**
   - Trên `MockLLM`, A/A giữa 2 bộ seed `[11,22,33,44,55]` và `[66,77,88,99,110]` cho **`Δ = +0.0000` trên mọi metric** (do cả hai bộ đều có đúng 1/5 seed chia hết cho 5 là `55` và `110`, kích hoạt cùng điểm yếu `seed % 5 == 0` trên `C-002`, `C-101`, `C-102`).
   - Với LLM thật ngoài thực tế, dải nhiễu A/A sẽ `> 0` do ngẫu nhiên suy luận; ngưỡng gate bắt buộc phải đặt **ngoài dải nhiễu A/A** để tránh chặn nhầm PR hợp lệ. Ở v2, chọn sàn blocking **`pass_hat_5 >= 0.85`** (≥ 0.80, thấp hơn baseline `0.8929` nhưng chặn được `flaky_regression` tụt xuống `0.5714`).

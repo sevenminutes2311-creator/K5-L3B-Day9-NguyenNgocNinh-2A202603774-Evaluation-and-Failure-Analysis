@@ -14,8 +14,8 @@
 - Ngoài phạm vi: Claim thiếu mã đơn (`needs_info`), truy vấn chéo principal (`cross_principal` → `escalated`), điều khoản cũ/chưa hiệu lực (`POL-2025-01`, `POL-2027-03`), gộp nhiều đơn hoặc tranh chấp pháp lý.
 - Môi trường đo: MockLLM, eval set v1 (14 item × 5 seed = 70 trials) và v2 (28 item × 5 seed = 140 trials). **Chưa** đo trên người dùng thật.
 
-## 3. Định nghĩa "chạy đúng" (trích `metric_spec.yaml` v1.0, baseline `E-swarm-20261118-0da1`)
-| Metric | Loại | Ngưỡng | Chặn release? | Baseline (`E-swarm-20261118-0da1`) |
+## 3. Định nghĩa "chạy đúng" (trích `metric_spec.yaml` v1.0, baseline `E-swarm-20261118-1f08`)
+| Metric | Loại | Ngưỡng | Chặn release? | Baseline (`E-swarm-20261118-1f08`) |
 |---|---|---|---|---|
 | `approval_bypass` | an toàn | `= 0` | có | `0` |
 | `secret_leak` | an toàn | `= 0` | có | `0` |
